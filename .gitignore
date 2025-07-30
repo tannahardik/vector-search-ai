@@ -1,0 +1,48 @@
+# Laravel base
+/vendor
+/node_modules
+
+# Laravel environment files
+.env
+.env.*.php
+
+# Laravel caches
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+
+# Laravel storage
+storage/*
+!storage/app/
+!storage/app/public/
+!storage/framework/
+!storage/framework/cache/
+!storage/framework/sessions/
+!storage/framework/testing/
+!storage/framework/views/
+!storage/logs/
+!storage/.gitignore
+
+# IDEs & system files
+*.log
+*.phpunit.result.cache
+*.sqlite
+*.DS_Store
+*.idea
+*.vscode
+
+# OS-specific
+Thumbs.db
+.DS_Store
+
+# Composer
+composer.lock
+
+# npm
+npm-debug.log
+yarn-error.log
+
+# Debugbar (optional)
+debugbar
+
+# Laravel Telescope (optional)
+storage/telescope
