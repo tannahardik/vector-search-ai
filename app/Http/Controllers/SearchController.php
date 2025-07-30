@@ -37,7 +37,7 @@ class SearchController extends Controller
             })
             ->sortByDesc('score')
             ->take(5)
-            ->filter(fn($item) => $item['score'] > 0.50)
+            ->filter(fn($item) => $item['score'] > 0.35)
             ->values();
 
         return view('search', [
