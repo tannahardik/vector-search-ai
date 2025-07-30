@@ -39,13 +39,15 @@ cd vector-search-ai
 composer install
 cp .env.example .env
 php artisan key:generate
-
 update database configs and cohere key in .env
+php artisan migrate
+
 ```
 
 ## 💾 Import Category Data
 
 ```bash
+put Lynx_Keyword_Enhanced_Services.xlsx file in storage/app folder
 php artisan import:categories
 ```
 
