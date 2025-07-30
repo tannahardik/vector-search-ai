@@ -23,10 +23,12 @@ class ImportCategories extends Command
             return $index !== 0 && !empty($row[0]) && !empty($row[2]);
         });
 
+
+
         $filtered->chunk(90)->each(function ($chunk) {
-            // Combine category + subcategory + service into single text for embedding
+            // Combine category + subcategory into single text for embedding
             $queries = $chunk->map(function ($row) {
-                return trim("{$row[0]} {$row[1]} {$row[2]}");
+                return trim("{$row[0]} {$row[1]}");
             })->values()->all();
 
             $embeddings = CohereHelper::getEmbeddings($queries);

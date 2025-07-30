@@ -26,19 +26,26 @@ class SearchController extends Controller
         $vector = $queryVector[0];
         // $this->embedText($query);
 
-        $results = Category::all()
-            ->map(function ($category) use ($vector) {
-                return [
-                    'name' => $category->name,
-                    'sub_category' => $category->sub_category,
-                    'service' => $category->service,
-                    'score' => CohereHelper::cosineSimilarity($vector, $category->embedding)
-                ];
-            })
-            ->sortByDesc('score')
-            ->take(5)
-            ->filter(fn($item) => $item['score'] > 0.35)
-            ->values();
+       $results = Category::all()
+    ->map(function ($category) use ($vector) {
+        return [
+            'name' => $category->name,
+            'sub_category' => $category->sub_category,
+            'service' => $category->service,
+            'score' => CohereHelper::cosineSimilarity($vector, $category->embedding)
+        ];
+    })
+    ->filter(fn($item) => $item['score'] > 0.50)
+    ->groupBy(fn($item) => $item['name'] . '|' . $item['sub_category'])
+    ->map(function ($group) {
+        // Each $group is a Collection of items with same category + sub_category
+        return $group->sortByDesc('score')->first();
+    })
+    ->values() // convert map() result back to flat collection
+    ->sortByDesc('score')
+    ->take(5)
+    ->values(); // reindex the result
+
 
         return view('search', [
             'results' => $results,

@@ -8,7 +8,7 @@ class CohereHelper
 {
     public static function getEmbeddings(array $texts): array
     {
-        $apiKey = 'GuX1VbT3xVDo1OQ7WRVEMZ1gobN5eP9tUzrQv6mG';
+        $apiKey = config('services.cohere.api_key');
 
         $response = Http::withHeaders([
             'Authorization' => "Bearer {$apiKey}",

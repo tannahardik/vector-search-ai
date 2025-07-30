@@ -38,7 +38,6 @@
                         <li class="list-group-item">
                             <strong>Category:</strong> {{ $result['name'] }}<br>
                             <strong>Sub-Category:</strong> {{ $result['sub_category'] ?? '—' }}<br>
-                            <strong>Service:</strong> {{ $result['service'] ?? '—' }}<br>
                             <span class="badge bg-primary mt-2">Score: {{ number_format($result['score'], 2) }}</span>
                         </li>
                         @endforeach
