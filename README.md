@@ -39,6 +39,8 @@ cd vector-search-ai
 composer install
 cp .env.example .env
 php artisan key:generate
+
+update database configs and cohere key in .env
 ```
 
 ## 💾 Import Category Data
@@ -56,7 +58,7 @@ php artisan serve
 
 Search via UI:
 ```
-/
+http://127.0.0.1:8000/
 ```
 
 ## 🧠 How It Works
@@ -64,6 +66,8 @@ Search via UI:
 1. Input query is embedded into a vector using `cohere`
 2. All stored categories/services are compared using cosine similarity
 3. Top N matching results are returned to the user
+
+Note : cohere key has limit of 1000 calls per month
 
 ## 📦 Dependencies
 
